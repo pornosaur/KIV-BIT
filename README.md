@@ -9,7 +9,7 @@ K přeložení slouží shell skript build.sh
 
 build.sh vytvori adresar lib, kde je přeložena knihovna.
 
-K přeložení samotné aplikace slouží CMakeLists, kde je zajištěno slinkování knihoven a vytvoření spustitelného souboru main.
+K přeložení samotné aplikace slouží CMakeLists, kde je zajištěno linkování knihoven a vytvoření spustitelného souboru main.
 
 Možné parametry je možné vypsat pomocí parametru -help
 
