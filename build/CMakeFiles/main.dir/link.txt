@@ -1,1 +1,0 @@
-/usr/bin/c++   -O3 -DNDEBUG    CMakeFiles/main.dir/src/main.cpp.o CMakeFiles/main.dir/src/RSA.cpp.o CMakeFiles/main.dir/src/HASH.cpp.o  -o main -rdynamic ../lib/libgmpxx.so ../lib/libgmp.so -Wl,-rpath,/home/pornosaur/BIT_FINAL/lib 

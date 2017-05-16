@@ -12,7 +12,7 @@ mpz_class RSA::generate_prime()
 	mpz_class min_value;
 	mpz_ui_pow_ui(min_value.get_mpz_t(), 10, DIGIT);
 	
-	/* Vygenerovani nahodne cisla o poctu cislis = DIGIT. */
+	/* Vygenerovani nahodneho cisla o poctu cislis = DIGIT. */
 	gmp_randclass random(gmp_randinit_mt);
 	random.seed(time(NULL));
 	mpz_class tmp_value = min_value + random.get_z_range(min_value);
@@ -27,8 +27,7 @@ mpz_class RSA::generate_prime()
 
 mpz_class RSA::generate_public_key(mpz_class from, mpz_class to)
 {
-	/* Vygenerovani nahodneho verejneho klice, ktere je mensi nez hodnota to a vetsi
-		nez hodnota q. */
+	/* Vygenerovani nahodneho verejneho klice */
 	mpz_class gcd;
 	gmp_randclass random(gmp_randinit_mt);
 	random.seed(time(NULL));
@@ -215,7 +214,7 @@ std::string RSA::encrypt_text(const std::string& plain_text, const std::string& 
 	return input;
 }
 
-std::string RSA::decrypt_text(const std::string& crypt_text, const std::string& out_file, bool sig)
+std::string RSA::decrypt_text(std::string& crypt_text, const std::string& out_file, bool sig)
 {
 	if (sig) {
 		load_public_key();
@@ -229,6 +228,7 @@ std::string RSA::decrypt_text(const std::string& crypt_text, const std::string& 
 	int len_text = crypt_text.size();
 	int size_block = n.get_str().size();
 	int count_block = ceil(len_text / (float)size_block);
+
 
 	/* Zpracovani jednotlivych bloku a jejich nasledne desifrovani. */
 	for (int j = 0; j < count_block; j++) {
@@ -265,12 +265,10 @@ std::string RSA::decrypt_text(const std::string& crypt_text, const std::string& 
 			} else {
 				num = tmp_text.substr(i, 3);
 			}
-
 			text += (char) std::stoi(num);
 		}
 	}
-
-	
+	//text += "\n";
 
 	/* Ulozeni desifrovaneho textu do souboru */
 	if (!out_file.empty()) {
@@ -329,11 +327,12 @@ void RSA::load_file_to_string(std::string& input, const std::string& file_name)
 
 	file.open(file_name);
 	if (file.is_open()) {
-		bool add_n = false;
 		while (getline(file, line)) {
-			if (add_n) { input += "\n";};
-			input += line;
-			add_n = true;
+				input += line + "\n";
+		}
+
+		if (line != "") {
+			input.pop_back();
 		}
 
 		file.close();

@@ -6,7 +6,7 @@
 
 #include "HASH.h"
 
-bool HASH::hash_text(const std::string& input, std::string& hash)
+bool HASH::hash_text(std::string& input, std::string& hash)
 {
 	/* Delka vstupniho textu */
 	int length_text = input.size();
@@ -120,7 +120,7 @@ bool HASH::hash_text(const std::string& input, std::string& hash)
 				pos++;		
 			}
 		}
-
+ 	
 		A = (A0 + A);
 		B = (B0 + B);
 		C = (C0 + C);
@@ -132,14 +132,15 @@ bool HASH::hash_text(const std::string& input, std::string& hash)
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 4; j++) {
 			uint32_t post = (abcd[i] >> j * 8) & 0xFF;
-			if (post <= 9) {
+			std::string p = mpz_class(post).get_str(16);
+			if (p.size() == 1) {
 				hash += "0";
 			}
-			hash += mpz_class(post).get_str(16);
+			hash += p;
 		}
 	}
 
-	//std::cout << "\tHASH: " << hash << std::endl;
+	std::cout << "\tHASH: " << hash << std::endl;
 
 	return true;
 }
@@ -169,7 +170,7 @@ uint32_t HASH::hash_functions(uint32_t B, uint32_t C, uint32_t D, uint32_t id_fu
 	return tmp;
 }
 
-bool HASH::compare_hash_signed(const std::string& signed_hash, const std::string& input_text)
+bool HASH::compare_hash_signed(const std::string& signed_hash, std::string& input_text)
 {
 	std::string hash;
 	hash_text(input_text, hash);

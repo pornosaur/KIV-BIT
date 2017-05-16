@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [ -d "lib/" ]; then
+dir="$(pwd)/lib"
+
+if test -d $dir; then
 	rm -r ./lib/	
 fi
 

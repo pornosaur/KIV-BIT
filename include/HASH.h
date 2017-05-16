@@ -49,8 +49,15 @@ public:
 
 		return - true = hashovani probleho uspesne.
 	*/
-	bool hash_text(const std::string& input, std::string& hash);
+	bool hash_text(std::string& input, std::string& hash);
 
-	bool compare_hash_signed(const std::string& signed_hash, const std::string& input_text);
+	/* Slouzi k porovnani desifrovanych dat s digitalnim podpisem.
+
+	   sighned_hash - desifrovany digitalni podpis.
+	   input_text -retezec desifrovanych dat.
+
+	   return - true = autentizace je spravna.
+	*/
+	bool compare_hash_signed(const std::string& signed_hash, std::string& input_text);
 
 };

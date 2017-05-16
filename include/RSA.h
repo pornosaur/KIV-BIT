@@ -25,6 +25,9 @@ private:
 	*/
 	mpz_class p, q, n, x, e, d;
 
+	/*
+		Vygenerovani nahodneho prvocisla.
+	*/
 	mpz_class generate_prime();
 
 	/* Slouzi k vygenerovani soukromeho klice, ktery je zavisly na verejnym klici.
@@ -89,13 +92,12 @@ public:
 
 	   file - nazev souboru s cypher textem.
     */
-	std::string decrypt_text(const std::string& crypt_text, const std::string& out_file, bool sig = false);
+	std::string decrypt_text(std::string& crypt_text, const std::string& out_file, bool sig = false);
 
 	/* Slouzi k nacteni obsahu souboru od retezce.
 
 		input - nacteny retezec.
 		file_name - nazev souboru.
-
 	*/
 	void load_file_to_string(std::string& input, const std::string& file_name);
 
