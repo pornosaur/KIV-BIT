@@ -1,9 +1,9 @@
 # KIV-BIT
 Implementace RSA sifry a MD5 hash funkce.
 
-Testováno pouze OS Linux.
+Testováno pouze OS Linux a nutno pod 64-bit (používají se 64b struct).
 
-Pro každou architekturu je  nutné přeložit přiloženou knihovnu GMP.
+Pro každou architekturu je nutné přeložit přiloženou knihovnu GMP.
 
 K přeložení slouží shell skript build.sh
 
