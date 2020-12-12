@@ -1,15 +1,11 @@
-# KIV-BIT
-Implementace RSA sifry a MD5 hash funkce.
+# Implementaion of Computer Security Algorithms - RSA and MD5 
 
-Testováno pouze OS Linux a nutno pod 64-bit (používají se 64b struct).
+- Developed on Ubuntu16.04 64-bit with GMP library (https://gmplib.org/) - The GNU Multiple Precision Arithmetic Library.
 
-Pro každou architekturu je nutné přeložit přiloženou knihovnu GMP.
+- There is script 'build.sh' for building the project.
 
-K přeložení slouží shell skript build.sh
+- The sript 'install.sh' will create lib directory with builded GMP.
 
-install.sh vytvori adresar lib, kde je přeložena knihovna.
+- You can run the app with '-help' parametr to get list of available and required parameters.
 
-K přeložení samotné aplikace slouží CMakeLists, kde je zajištěno linkování knihoven a vytvoření spustitelného souboru main.
-
-Možné parametry je možné vypsat pomocí parametru -help
 
